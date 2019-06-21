@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>loading</title>
+  <style>
+  html, body {
+    margin: 0;
+    height: 100%;
+  }
+
+  .container {
+    height: 100%;
+    background-color: #ffffff;
+  }
+
+  .loading-area {
+    opacity: 0;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+  }
+
+  .loading .loading-area {
+    transform: translateZ(0) rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(1);
+    opacity: 1;
+  }
+
+  .half-border {
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 3px solid #e34981;
+  }
+  .out, .in {
+    border-left-color: transparent;
+    border-right-color: transparent;
+  }
+  @keyframes rotate {
+    0% {
+       transform: rotate(0);
+     }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rotateNeg {
+    0% {
+       transform: rotate(0);
+     }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+  .out {
+    width: 70%;
+    height: 70%;
+    animation: rotate 2s linear infinite;
+  }
+  .middle {
+    width: 65%;
+    height: 65%;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    animation: rotateNeg 2s linear infinite;
+  }
+  .in {
+    width: 30%;
+    height: 30%;
+    animation: rotate 1s linear infinite;
+  }
+  .icon {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  .logo {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-image: url('crec.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center bottom;
+    background-clip: content-box;
+    z-index: 10;
+    animation: grow 2s linear;
+  }
+  @keyframes grow {
+    0% {
+      height: 0;
+      padding-top: 50px;
+    }
+    100% {
+      padding-top: 0;
+      height: 50px;
+    }
+  }
+  .logo-gray {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('crec-gray.png');
+    z-index: 1;
+  }
+  </style>
+</head>
+<body>
+<!--<img id="ld" src="./loading.gif" alt="">-->
+<div class="container loading">
+  <div class="loading-area">
+    <!--<img class="icon" src="./loading2.gif" alt="">-->
+    <div class="logo"></div>
+    <div class="logo-gray"></div>
+    <div class="half-border out"></div>
+    <div class="half-border middle"></div>
+    <div class="half-border in"></div>
+  </div>
+</div>
+<script>
+</script>
+</body>
+</html>
