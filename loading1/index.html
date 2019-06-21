@@ -47,23 +47,28 @@
   @keyframes rotate {
     0% {
       transform: rotate(0);
+      opacity: 1;
     }
     100% {
       transform: rotate(360deg);
+      opacity: 1;
     }
   }
   @keyframes rotateNeg {
     0% {
       transform: rotate(0);
+      opacity: 1;
     }
     100% {
       transform: rotate(-360deg);
+      opacity: 1;
     }
   }
   .out {
     width: 70%;
     height: 70%;
     animation: rotate 2s linear infinite 1s;
+    opacity: 0;
   }
   .middle {
     width: 65%;
@@ -71,6 +76,7 @@
     border-top-color: transparent;
     border-bottom-color: transparent;
     animation: rotateNeg 2s linear infinite 1s;
+    opacity: 0;
   }
   .in {
     width: 30%;
