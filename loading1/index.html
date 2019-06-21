@@ -63,14 +63,14 @@
   .out {
     width: 70%;
     height: 70%;
-    animation: rotate 2s linear infinite;
+    animation: rotate 2s linear infinite 1s;
   }
   .middle {
     width: 65%;
     height: 65%;
     border-top-color: transparent;
     border-bottom-color: transparent;
-    animation: rotateNeg 2s linear infinite;
+    animation: rotateNeg 2s linear infinite 1s;
   }
   .in {
     width: 30%;
@@ -87,28 +87,34 @@
     right: 0;
     margin: auto;
   }
-  .rec {
-    width: 63.6px;
-    height: 27px;
+  .logo {
+    width: 100px;
+    height: 100px;
     position: absolute;
-    left: 50%;
-    top: 100.8px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-image: url('crec.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center bottom;
+    background-clip: content-box;
     z-index: 10;
-    margin-left: -33px;
-    animation: blink 2s linear infinite;
+    animation: grow 1s linear;
   }
-  @keyframes blink {
+  @keyframes grow {
     0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.3;
+      height: 0;
+      padding-top: 100px;
     }
     100% {
-      opacity: 1;
+      padding-top: 0;
+      height: 100px;
     }
   }
-  .c {
+  .logo-gray {
     width: 100px;
     height: 100px;
     position: absolute;
@@ -119,7 +125,7 @@
     margin: auto;
     background-repeat: no-repeat;
     background-size: contain;
-    background-image: url('c.svg');
+    background-image: url('crec-gray.png');
     z-index: 1;
   }
   </style>
@@ -129,8 +135,8 @@
 <div class="container loading">
   <div class="loading-area">
     <!--<img class="icon" src="./loading2.gif" alt="">-->
-    <img class="rec" src="rec.svg" alt="">
-    <div class="c"></div>
+    <div class="logo"></div>
+    <div class="logo-gray"></div>
     <div class="half-border out"></div>
     <div class="half-border middle"></div>
     <!-- <div class="half-border in"></div> -->
