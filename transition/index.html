@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no,viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>跳转中...</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hide {
+      display: none;
+    }
+  </style>
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+</head>
+<body>
+<noscript>
+  <strong>We're sorry but this page doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
+<p class="no-support-mobile hide">该任务暂不支持在移动端办理，请前往电脑端办理。</p>
+<script>
+  function isMobile() {
+    return (
+      [
+        'Mobile',
+        'Android',
+        'iPhone',
+        'SymbianOS',
+        'Windows Phone',
+        'iPad',
+        'iPod'
+      ].some(char => window.navigator.userAgent.includes(char)) || false
+    )
+  }
+  let search = window.location.search
+  let usp = new URLSearchParams(search)
+  let pcurl = usp.get('pcurl')
+  let mobileurl = usp.get('mobileurl') || ''
+  if (isMobile()) {
+    if (mobileurl) {
+      window.open(mobileurl,'_blank')
+    } else {
+      document.querySelector('.no-support-mobile').classList.remove('hide')
+    }
+  } else {
+    let urlPC = new URL(pcurl)
+    let uspPC = new URLSearchParams(urlPC.search)
+    uspPC.append('target', 'out')
+    console.log('?' + uspPC.toString())
+    urlPC.search = '?' + uspPC.toString()
+    window.location.href = urlPC
+    setTimeout(function() {
+      // window.close()
+    })
+  }
+</script>
+</body>
+</html>
