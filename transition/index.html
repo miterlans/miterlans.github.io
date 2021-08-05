@@ -45,8 +45,18 @@
   }
   let search = window.location.search
   let usp = new URLSearchParams(search)
-  let pcurl = usp.get('pcurl')
-  let mobileurl = usp.get('mobileurl') || ''
+  let rest = []
+  let pcurl
+  let mobileurl
+  Array.from(usp).forEach(([k,v]) => {
+    if (k === 'pcurl') {
+      pcurl = v
+    } else if (k === 'mobileurl') {
+      mobileurl = v
+    } else {
+      rest.push([k,v])
+    }
+  })
   if (isMobile()) {
     if (mobileurl) {
       window.open(mobileurl,'_blank')
@@ -57,6 +67,9 @@
     let urlPC = new URL(pcurl)
     let uspPC = new URLSearchParams(urlPC.search)
     uspPC.append('target', 'out')
+    rest.forEach(([k,v]) => {
+      uspPC.append(k,v)
+    })
     console.log('?' + uspPC.toString())
     urlPC.search = '?' + uspPC.toString()
     window.location.href = urlPC
