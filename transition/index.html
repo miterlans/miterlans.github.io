@@ -21,6 +21,7 @@
       display: none;
     }
   </style>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.9.1/vconsole.min.js"></script>
   <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 </head>
 <body>
@@ -29,6 +30,9 @@
 </noscript>
 <p>跳转中...</p>
 <p class="no-support-mobile hide">该任务暂不支持在移动端办理，请前往电脑端办理。</p>
+<script>
+  new VConsole()
+</script>
 <script>
   function isMobile() {
     return (
