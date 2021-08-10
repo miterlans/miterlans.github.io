@@ -21,6 +21,7 @@
       display: none;
     }
   </style>
+  <script src="https://cdn.bootcdn.net/ajax/libs/qs/6.10.1/qs.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.9.1/vconsole.min.js"></script>
   <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 </head>
@@ -47,20 +48,13 @@
       ].some(char => window.navigator.userAgent.includes(char)) || false
     )
   }
-  let search = window.location.search
-  let usp = new URLSearchParams(search)
-  let rest = []
-  let pcurl
-  let mobileurl
-  Array.from(usp).forEach(([k,v]) => {
-    if (k === 'pcurl') {
-      pcurl = v
-    } else if (k === 'mobileurl') {
-      mobileurl = v
-    } else {
-      rest.push([k,v])
-    }
-  })
+  let search = window.location.search.slice(1)
+  let usp = Qs.parse(search)
+  const {
+    pcurl,
+    mobileurl,
+    ...rest
+  } = usp
   if (isMobile()) {
     if (mobileurl) {
       window.open(mobileurl,'_blank')
@@ -69,14 +63,12 @@
     }
   } else {
     let urlPC = new URL(pcurl)
-    let uspPC = new URLSearchParams(urlPC.search)
-    uspPC.append('target', 'out')
-    rest.forEach(([k,v]) => {
-      uspPC.append(k,v)
-    })
-    console.log('?' + uspPC.toString())
-    urlPC.search = '?' + uspPC.toString()
-    window.location.href = urlPC
+    let uspPC = Qs.parse(urlPC.search.slice(1))
+    uspPC.target = 'out'
+    Object.assign(uspPC, rest)
+    console.log('?' + Qs.stringify(uspPC))
+    urlPC.search = '?' + Qs.stringify(uspPC)
+    window.location.href = urlPC.href
     setTimeout(function() {
       window.close()
     })
