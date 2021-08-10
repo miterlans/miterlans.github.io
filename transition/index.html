@@ -56,10 +56,11 @@
     ...rest
   } = usp
   if (isMobile()) {
-    console.log('is Mobile true, mobileurl is ', mobileurl)
     if (mobileurl) {
-      window.open(mobileurl,'_blank')
+      console.log('is Mobile true, mobileurl is ', mobileurl)
+      window.open(mobileurl, '_self')
     } else {
+      console.log('is Mobile true, cannot jump')
       document.querySelector('.no-support-mobile').classList.remove('hide')
     }
   } else {
